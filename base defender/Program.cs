@@ -9,13 +9,26 @@ namespace base_defender
         {
             Raylib.InitWindow(800, 600, "Hello World");
 
-           while (!Raylib.WindowShouldClose())
-           {
+            string scene = "intro";
 
-           Raylib.BeginDrawing();
+            while (!Raylib.WindowShouldClose())
+            {
+
+                Raylib.BeginDrawing();
+
+                Raylib.ClearBackground(Color.GRAY);
+
+                if (scene == "MainMenu")
+                {
+                    Raylib.DrawRectangle(400, 300, 250, 50, Color.MAGENTA);
+                }
 
 
-           }
+
+
+
+                Raylib.EndDrawing();
+            }
 
         }
     }
