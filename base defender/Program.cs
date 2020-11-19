@@ -9,7 +9,7 @@ namespace base_defender
         {
             Raylib.InitWindow(800, 600, "Hello World");
 
-            string scene = "intro";
+            string scene = "MainMenu";
 
             while (!Raylib.WindowShouldClose())
             {
@@ -20,9 +20,27 @@ namespace base_defender
 
                 if (scene == "MainMenu")
                 {
-                    Raylib.DrawRectangle(400, 300, 250, 50, Color.MAGENTA);
-                }
+                    Raylib.DrawText("Game", 280, 30, 80, Color.DARKGREEN);
+                    Raylib.DrawRectangle(250, 150, 300, 100, Color.MAROON);
+                    Raylib.DrawText("Play", 280, 150, 80, Color.DARKGREEN);
+                    Raylib.DrawRectangle(250, 300, 300, 100, Color.MAROON);
+                    Raylib.DrawText("Settings", 280, 300, 80, Color.DARKGREEN);
+                    Raylib.DrawRectangle(250, 450, 300, 100, Color.MAROON);
+                    Raylib.DrawText("Exit", 280, 450, 80, Color.DARKGREEN);
 
+                }
+                else if (scene == "MainGame")
+                {
+
+                }
+                else if (scene == "Settings")
+                {
+
+                }
+                else if (scene == "Exit")
+                {
+
+                }
 
 
 
