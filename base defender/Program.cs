@@ -7,9 +7,13 @@ namespace base_defender
     {
         static void Main(string[] args)
         {
-            Raylib.InitWindow(800, 600, "Hello World");
+            Raylib.InitWindow(800, 600, "Game");
 
             string scene = "MainMenu";
+
+            float playerX = 400;
+            float enemyX = 20;
+            float enemyY = 20;
 
             while (!Raylib.WindowShouldClose())
             {
@@ -25,11 +29,10 @@ namespace base_defender
                     Rectangle playbuttonrec = new Rectangle(250, 150, 300, 100);
                     Rectangle settingbuttonrec = new Rectangle(200, 300, 400, 100);
                     Rectangle exitbuttonrec = new Rectangle(250, 450, 300, 100);
-
-                    Raylib.DrawRectangleRec(playbuttonrec, Color.MAROON);
-                    Raylib.DrawRectangleRec(settingbuttonrec, Color.MAROON);
-                    Raylib.DrawRectangleRec(exitbuttonrec, Color.MAROON);
-
+                    Raylib.ClearBackground(Color.MAGENTA);
+                    Raylib.DrawRectangleRec(playbuttonrec, Color.RED);
+                    Raylib.DrawRectangleRec(settingbuttonrec, Color.RED);
+                    Raylib.DrawRectangleRec(exitbuttonrec, Color.RED);
 
                     bool playbuttonareOverlapping = Raylib.CheckCollisionRecs(mouserec, playbuttonrec);
                     bool settingbuttonOverlapping = Raylib.CheckCollisionRecs(mouserec, settingbuttonrec);
@@ -44,7 +47,6 @@ namespace base_defender
                     if (playbuttonareOverlapping)
                     {
                         Raylib.DrawRectangleRec(playbuttonrec, Color.BLUE);
-
                     }
 
                     if (settingbuttonOverlapping && mouseleftdown)
@@ -65,15 +67,45 @@ namespace base_defender
                         Raylib.DrawRectangleRec(exitbuttonrec, Color.BLUE);
                     }
 
-                    Raylib.DrawText("Game", 280, 30, 80, Color.DARKGREEN);
-                    Raylib.DrawText("Play", 280, 150, 80, Color.DARKGREEN);
-                    Raylib.DrawText("Settings", 250, 310, 80, Color.DARKGREEN);
-                    Raylib.DrawText("Exit", 280, 450, 80, Color.DARKGREEN);
+                    MenuWords();
 
                 }
 
                 else if (scene == "MainGame")
                 {
+
+
+                    Rectangle playerrec = new Rectangle((int)playerX, 550, 40, 40);
+                    Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 20, 20);
+                    Rectangle borderrecLeft = new Rectangle(5, 0, 1, 600);
+                    Rectangle borderrecRight = new Rectangle(795, 0, 1, 600);
+
+                    bool borderLeftcheck = Raylib.CheckCollisionRecs(playerrec, borderrecLeft);
+                    bool borderRightcheck = Raylib.CheckCollisionRecs(playerrec, borderrecRight);
+
+                    if (borderLeftcheck)
+                    {
+                        playerX += 0.1f;
+                    }
+                    else if (borderRightcheck)
+                    {
+                        playerX -= 0.1f;
+                    }
+
+                    if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+                    {
+                        playerX -= 0.1f;
+                    }
+                    if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+                    {
+                        playerX += 0.1f;
+                    }
+
+
+
+                    Raylib.ClearBackground(Color.SKYBLUE);
+
+                    Raylib.DrawRectangleRec(playerrec, Color.RED);
 
                 }
                 else if (scene == "Settings")
@@ -92,5 +124,14 @@ namespace base_defender
             }
 
         }
+
+        static void MenuWords()
+        {
+            Raylib.DrawText("Game", 280, 30, 80, Color.DARKGREEN);
+            Raylib.DrawText("Play", 280, 150, 80, Color.DARKGREEN);
+            Raylib.DrawText("Settings", 250, 310, 80, Color.DARKGREEN);
+            Raylib.DrawText("Exit", 280, 450, 80, Color.DARKGREEN);
+        }
+
     }
 }
