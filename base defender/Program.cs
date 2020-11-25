@@ -85,27 +85,27 @@ namespace base_defender
 
                     if (borderLeftcheck)
                     {
-                        playerX += 0.1f;
+                        playerX += 0.5f;
                     }
                     else if (borderRightcheck)
                     {
-                        playerX -= 0.1f;
+                        playerX -= 0.5f;
                     }
 
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
                     {
-                        playerX -= 0.1f;
+                        playerX -= 0.5f;
                     }
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
                     {
-                        playerX += 0.1f;
+                        playerX += 0.5f;
                     }
 
 
 
                     Raylib.ClearBackground(Color.SKYBLUE);
 
-                    Raylib.DrawRectangleRec(playerrec, Color.RED);
+                    Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
 
                 }
                 else if (scene == "Settings")
