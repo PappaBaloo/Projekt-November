@@ -74,15 +74,19 @@ namespace base_defender
                 else if (scene == "MainGame")
                 {
 
-
+                    //REKTANGLAR FÖR SPELET
                     Rectangle playerrec = new Rectangle((int)playerX, 550, 40, 40);
-                    Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 20, 20);
+                    Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 30, 30);
                     Rectangle borderrecLeft = new Rectangle(5, 0, 1, 600);
                     Rectangle borderrecRight = new Rectangle(795, 0, 1, 600);
 
+                    //BOOLS FÖR SPELET
                     bool borderLeftcheck = Raylib.CheckCollisionRecs(playerrec, borderrecLeft);
                     bool borderRightcheck = Raylib.CheckCollisionRecs(playerrec, borderrecRight);
+                    bool enemyleftcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecLeft);
+                    bool enemyrightcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecRight);
 
+                    //BORDER FÖR SPELAREN
                     if (borderLeftcheck)
                     {
                         playerX += 0.5f;
@@ -92,20 +96,33 @@ namespace base_defender
                         playerX -= 0.5f;
                     }
 
+                    //KONTROLL FÖR SPELAREN
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
                     {
-                        playerX -= 0.5f;
+                        playerX -= 0.4f;
                     }
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
                     {
-                        playerX += 0.5f;
+                        playerX += 0.4f;
                     }
 
+                    //FIENDE RÖRELSE
+                    if (scene == "MainGame")
+                    {
+
+                    }
+
+                    //FIENDE BORDERS
+                    if (enemyrightcheck)
+                    {
+                        enemyX -= 0.6f;
+                    }
 
 
                     Raylib.ClearBackground(Color.SKYBLUE);
 
                     Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
+                    Raylib.DrawRectangleRec(enemyrec, Color.RED);
 
                 }
                 else if (scene == "Settings")
