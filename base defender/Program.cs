@@ -18,6 +18,9 @@ namespace base_defender
             while (!Raylib.WindowShouldClose())
             {
 
+                // Raylib.SetTargetFPS(120);
+                Raylib.SetExitKey(0);
+
                 Raylib.BeginDrawing();
 
                 Raylib.ClearBackground(Color.GRAY);
@@ -79,12 +82,14 @@ namespace base_defender
                     Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 30, 30);
                     Rectangle borderrecLeft = new Rectangle(5, 0, 1, 600);
                     Rectangle borderrecRight = new Rectangle(795, 0, 1, 600);
+                    Rectangle enemyplatform = new Rectangle(20, 9, 600, 1);
 
                     //BOOLS FÖR SPELET
                     bool borderLeftcheck = Raylib.CheckCollisionRecs(playerrec, borderrecLeft);
                     bool borderRightcheck = Raylib.CheckCollisionRecs(playerrec, borderrecRight);
                     bool enemyleftcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecLeft);
                     bool enemyrightcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecRight);
+                    bool enemyplatform1check = Raylib.CheckCollisionRecs(enemyrec, enemyplatform);
 
                     //BORDER FÖR SPELAREN
                     if (borderLeftcheck)
@@ -107,20 +112,24 @@ namespace base_defender
                     }
 
                     //FIENDE RÖRELSE
-                    if (scene == "MainGame")
+                    if (enemyplatform1check)
                     {
-
+                        enemyX += 0.3f;
                     }
 
                     //FIENDE BORDERS
                     if (enemyrightcheck)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 0.9f;
                     }
-
+                    if (enemyleftcheck)
+                    {
+                        enemyX += 0.9f;
+                    }
 
                     Raylib.ClearBackground(Color.SKYBLUE);
 
+                    Raylib.DrawRectangleRec(borderrecLeft, Color.RED);
                     Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
 
