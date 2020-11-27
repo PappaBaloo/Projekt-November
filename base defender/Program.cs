@@ -82,15 +82,16 @@ namespace base_defender
                     Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 30, 30);
                     Rectangle borderrecLeft = new Rectangle(5, 0, 1, 600);
                     Rectangle borderrecRight = new Rectangle(795, 0, 1, 600);
-                    Rectangle enemyplatform = new Rectangle(20, 10, 795, 30);
-                    Rectangle enemyplatform2 = new Rectangle(20, 40, 795, 30);
+                    Rectangle enemyplatform1 = new Rectangle(30, 35, 755, 10);
+                    Rectangle enemyplatform2 = new Rectangle(30, 70, 755, 10);
 
                     //BOOLS FÖR SPELET
                     bool borderLeftcheck = Raylib.CheckCollisionRecs(playerrec, borderrecLeft);
                     bool borderRightcheck = Raylib.CheckCollisionRecs(playerrec, borderrecRight);
                     bool enemyleftcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecLeft);
                     bool enemyrightcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecRight);
-                    bool enemyplatform1check = Raylib.CheckCollisionRecs(enemyrec, enemyplatform);
+                    bool enemyplatform1check = Raylib.CheckCollisionRecs(enemyrec, enemyplatform1);
+                    bool enemyplatform2check = Raylib.CheckCollisionRecs(enemyrec, enemyplatform2);
 
                     //BORDER FÖR SPELAREN
                     if (borderLeftcheck)
@@ -115,21 +116,17 @@ namespace base_defender
                     //FIENDE RÖRELSE
                     if (enemyplatform1check)
                     {
-                        enemyX += 0.3f;
+                        enemyX += 0.1f;
+                    }
+                    if (enemyplatform2check)
+                    {
+                        enemyX -= 0.1f;
                     }
 
                     //FIENDE BORDERS
                     if (enemyrightcheck)
                     {
-                        enemyX -= 0.9f;
-                    }
-                    if (enemyleftcheck)
-                    {
-                        enemyX += 0.9f;
-                    }
-                    if (enemy)
-                    {
-
+                        enemyY += 50f;
                     }
 
                     Raylib.ClearBackground(Color.SKYBLUE);
@@ -137,6 +134,8 @@ namespace base_defender
                     Raylib.DrawRectangleRec(borderrecLeft, Color.RED);
                     Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
+                    Raylib.DrawRectangleRec(enemyplatform1, Color.BLACK);
+                    Raylib.DrawRectangleRec(enemyplatform2, Color.BLACK);
 
                 }
                 else if (scene == "Settings")
