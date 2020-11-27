@@ -82,7 +82,8 @@ namespace base_defender
                     Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 30, 30);
                     Rectangle borderrecLeft = new Rectangle(5, 0, 1, 600);
                     Rectangle borderrecRight = new Rectangle(795, 0, 1, 600);
-                    Rectangle enemyplatform = new Rectangle(20, 9, 600, 1);
+                    Rectangle enemyplatform = new Rectangle(20, 10, 795, 30);
+                    Rectangle enemyplatform2 = new Rectangle(20, 40, 795, 30);
 
                     //BOOLS FÖR SPELET
                     bool borderLeftcheck = Raylib.CheckCollisionRecs(playerrec, borderrecLeft);
@@ -125,6 +126,10 @@ namespace base_defender
                     if (enemyleftcheck)
                     {
                         enemyX += 0.9f;
+                    }
+                    if (enemy)
+                    {
+
                     }
 
                     Raylib.ClearBackground(Color.SKYBLUE);
