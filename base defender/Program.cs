@@ -131,7 +131,6 @@ namespace base_defender
 
                     Raylib.ClearBackground(Color.SKYBLUE);
 
-                    Raylib.DrawRectangleRec(borderrecLeft, Color.RED);
                     Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
                     Raylib.DrawRectangleRec(enemyplatform1, Color.BLACK);
