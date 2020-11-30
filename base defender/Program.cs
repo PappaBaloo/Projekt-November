@@ -12,8 +12,10 @@ namespace base_defender
             string scene = "MainMenu";
 
             float playerX = 400;
-            float enemyX = 20;
+            float enemyX = 80;
             float enemyY = 20;
+            float bulletY = 550;
+
 
             while (!Raylib.WindowShouldClose())
             {
@@ -80,61 +82,127 @@ namespace base_defender
                     //REKTANGLAR FÖR SPELET
                     Rectangle playerrec = new Rectangle((int)playerX, 550, 40, 40);
                     Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 30, 30);
-                    Rectangle borderrecLeft = new Rectangle(5, 0, 1, 600);
-                    Rectangle borderrecRight = new Rectangle(795, 0, 1, 600);
-                    Rectangle enemyplatform1 = new Rectangle(30, 35, 755, 10);
-                    Rectangle enemyplatform2 = new Rectangle(30, 70, 755, 10);
+                    Rectangle borderrecLeft = new Rectangle(0, 0, 50, 600);
+                    Rectangle borderrecRight = new Rectangle(750, 0, 50, 600);
+                    Rectangle bullet = new Rectangle((int)playerX, (int)bulletY, 10, 15);
 
                     //BOOLS FÖR SPELET
                     bool borderLeftcheck = Raylib.CheckCollisionRecs(playerrec, borderrecLeft);
                     bool borderRightcheck = Raylib.CheckCollisionRecs(playerrec, borderrecRight);
                     bool enemyleftcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecLeft);
                     bool enemyrightcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecRight);
-                    bool enemyplatform1check = Raylib.CheckCollisionRecs(enemyrec, enemyplatform1);
-                    bool enemyplatform2check = Raylib.CheckCollisionRecs(enemyrec, enemyplatform2);
 
-                    //BORDER FÖR SPELAREN
+                    //BORDER FÖR SPELAREN OCH TELEPORTING
                     if (borderLeftcheck)
                     {
-                        playerX += 0.5f;
+                        playerX = 699;
                     }
                     else if (borderRightcheck)
                     {
-                        playerX -= 0.5f;
+                        playerX = 51;
                     }
 
                     //KONTROLL FÖR SPELAREN
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
                     {
-                        playerX -= 0.4f;
+                        playerX -= 0.2f;
                     }
+
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
                     {
-                        playerX += 0.4f;
+                        playerX += 0.2f;
+                    }
+
+                    if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))
+                    {
+                        bulletY += 0.3f;
                     }
 
                     //FIENDE RÖRELSE
-                    if (enemyplatform1check)
+
+                    if (enemyY == 20)
                     {
                         enemyX += 0.1f;
                     }
-                    if (enemyplatform2check)
+
+                    else if (enemyY == 60)
                     {
                         enemyX -= 0.1f;
                     }
 
-                    //FIENDE BORDERS
+                    else if (enemyY == 100)
+                    {
+                        enemyX += 0.1f;
+                    }
+
+                    else if (enemyY == 140)
+                    {
+                        enemyX -= 0.1f;
+                    }
+
+                    else if (enemyY == 180)
+                    {
+                        enemyX += 0.1f;
+                    }
+
+                    else if (enemyY == 220)
+                    {
+                        enemyX -= 0.1f;
+                    }
+
+                    else if (enemyY == 260)
+                    {
+                        enemyX += 0.1f;
+                    }
+
+                    else if (enemyY == 300)
+                    {
+                        enemyX -= 0.1f;
+                    }
+
+                    else if (enemyY == 340)
+                    {
+                        enemyX += 0.1f;
+                    }
+
+                    else if (enemyY == 380)
+                    {
+                        enemyX -= 0.1f;
+                    }
+
+                    else if (enemyY == 420)
+                    {
+                        enemyX += 0.1f;
+                    }
+
+                    else if (enemyY == 460)
+                    {
+                        enemyX -= 0.1f;
+                    }
+
                     if (enemyrightcheck)
                     {
-                        enemyY += 50f;
+                        enemyX--;
+                        enemyY += 40;
                     }
+
+                    if (enemyleftcheck)
+                    {
+                        enemyY += 40;
+                        enemyX++;
+                    }
+
+
+
+
 
                     Raylib.ClearBackground(Color.SKYBLUE);
 
                     Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
-                    Raylib.DrawRectangleRec(enemyplatform1, Color.BLACK);
-                    Raylib.DrawRectangleRec(enemyplatform2, Color.BLACK);
+                    Raylib.DrawRectangleRec(borderrecLeft, Color.BLACK);
+                    Raylib.DrawRectangleRec(borderrecRight, Color.BLACK);
+
 
                 }
                 else if (scene == "Settings")
