@@ -66,6 +66,7 @@ namespace base_defender
                     if (exitbuttonrecOverlapping && mouseleftdown)
                     {
                         scene = "Exit";
+
                     }
                     if (exitbuttonrecOverlapping)
                     {
@@ -113,9 +114,9 @@ namespace base_defender
                         playerX += 0.2f;
                     }
 
-                    if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE))
+                    if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
                     {
-                        bulletY += 0.3f;
+                        bulletY = 0.2f;
                     }
 
                     //FIENDE RÖRELSE
@@ -192,7 +193,10 @@ namespace base_defender
                         enemyX++;
                     }
 
-
+                    if (enemyY == 500)
+                    {
+                        scene = "Exit";
+                    }
 
 
 
@@ -202,6 +206,7 @@ namespace base_defender
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
                     Raylib.DrawRectangleRec(borderrecLeft, Color.BLACK);
                     Raylib.DrawRectangleRec(borderrecRight, Color.BLACK);
+                    Raylib.DrawRectangleRec(bullet, Color.DARKGREEN);
 
 
                 }
@@ -211,7 +216,9 @@ namespace base_defender
                 }
                 else if (scene == "Exit")
                 {
+                    Raylib.ClearBackground(Color.LIME);
 
+                    Raylib.DrawText("fuck", 380, 280, 45, Color.VIOLET);
                 }
 
 
