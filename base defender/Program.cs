@@ -20,7 +20,7 @@ namespace base_defender
             while (!Raylib.WindowShouldClose())
             {
 
-                // Raylib.SetTargetFPS(120);
+
                 Raylib.SetExitKey(0);
 
                 Raylib.BeginDrawing();
@@ -34,6 +34,7 @@ namespace base_defender
                     Rectangle playbuttonrec = new Rectangle(250, 150, 300, 100);
                     Rectangle settingbuttonrec = new Rectangle(200, 300, 400, 100);
                     Rectangle exitbuttonrec = new Rectangle(250, 450, 300, 100);
+
                     Raylib.ClearBackground(Color.MAGENTA);
                     Raylib.DrawRectangleRec(playbuttonrec, Color.RED);
                     Raylib.DrawRectangleRec(settingbuttonrec, Color.RED);
@@ -65,7 +66,7 @@ namespace base_defender
 
                     if (exitbuttonrecOverlapping && mouseleftdown)
                     {
-                        scene = "Exit";
+                        scene = "Death";
 
                     }
                     if (exitbuttonrecOverlapping)
@@ -79,6 +80,9 @@ namespace base_defender
 
                 else if (scene == "MainGame")
                 {
+
+                    //FPS Lock
+                    Raylib.SetTargetFPS(400);
 
                     //REKTANGLAR FÖR SPELET
                     Rectangle playerrec = new Rectangle((int)playerX, 550, 40, 40);
@@ -106,79 +110,79 @@ namespace base_defender
                     //KONTROLL FÖR SPELAREN
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
                     {
-                        playerX -= 0.2f;
+                        playerX -= 0.8f;
                     }
 
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
                     {
-                        playerX += 0.2f;
+                        playerX += 0.8f;
                     }
 
                     if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
                     {
-                        bulletY = 0.2f;
+                        bulletY = 0.8f;
                     }
 
                     //FIENDE RÖRELSE
 
                     if (enemyY == 20)
                     {
-                        enemyX += 0.1f;
+                        enemyX += 0.6f;
                     }
 
                     else if (enemyY == 60)
                     {
-                        enemyX -= 0.1f;
+                        enemyX -= 0.6f;
                     }
 
                     else if (enemyY == 100)
                     {
-                        enemyX += 0.1f;
+                        enemyX += 0.6f;
                     }
 
                     else if (enemyY == 140)
                     {
-                        enemyX -= 0.1f;
+                        enemyX -= 0.6f;
                     }
 
                     else if (enemyY == 180)
                     {
-                        enemyX += 0.1f;
+                        enemyX += 0.6f;
                     }
 
                     else if (enemyY == 220)
                     {
-                        enemyX -= 0.1f;
+                        enemyX -= 0.6f;
                     }
 
                     else if (enemyY == 260)
                     {
-                        enemyX += 0.1f;
+                        enemyX += 0.6f;
                     }
 
                     else if (enemyY == 300)
                     {
-                        enemyX -= 0.1f;
+                        enemyX -= 0.6f;
                     }
 
                     else if (enemyY == 340)
                     {
-                        enemyX += 0.1f;
+                        enemyX += 0.6f;
                     }
 
                     else if (enemyY == 380)
                     {
-                        enemyX -= 0.1f;
+                        enemyX -= 0.6f;
                     }
 
                     else if (enemyY == 420)
                     {
-                        enemyX += 0.1f;
+                        enemyX += 0.6f;
                     }
 
                     else if (enemyY == 460)
                     {
-                        enemyX -= 0.1f;
+                        enemyX -= 0.6f;
                     }
 
                     if (enemyrightcheck)
@@ -195,7 +199,7 @@ namespace base_defender
 
                     if (enemyY == 500)
                     {
-                        scene = "Exit";
+                        scene = "Death";
                     }
 
 
@@ -213,12 +217,39 @@ namespace base_defender
                 else if (scene == "Settings")
                 {
 
-                }
-                else if (scene == "Exit")
-                {
                     Raylib.ClearBackground(Color.LIME);
 
-                    Raylib.DrawText("fuck", 380, 280, 45, Color.VIOLET);
+                    Raylib.DrawText("nothing for now", 380, 280, 45, Color.MAGENTA);
+
+                    if (Raylib.IsKeyPressed(KeyboardKey.KEY_D))
+                    {
+                        scene = "MainMenu";
+                    }
+
+                }
+                else if (scene == "Death")
+                {
+                    Rectangle mouserec = new Rectangle(Raylib.GetMouseX(), Raylib.GetMouseY(), 1, 1);
+                    Rectangle exitbuttonrec = new Rectangle(250, 350, 300, 100);
+
+                    Raylib.DrawRectangleRec(exitbuttonrec, Color.RED);
+
+                    bool exitbuttonrecOverlapping = Raylib.CheckCollisionRecs(mouserec, exitbuttonrec);
+                    bool mouseleftdown = Raylib.IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON);
+
+                    Raylib.ClearBackground(Color.LIME);
+
+                    if (exitbuttonrecOverlapping && mouseleftdown)
+                    {
+                        scene = "MainMenu";
+
+                    }
+                    if (exitbuttonrecOverlapping)
+                    {
+                        Raylib.DrawRectangleRec(exitbuttonrec, Color.BEIGE);
+                    }
+
+                    Raylib.DrawText("Restart", 280, 380, 45, Color.VIOLET);
                 }
 
 
