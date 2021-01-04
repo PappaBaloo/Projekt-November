@@ -268,5 +268,12 @@ namespace base_defender
             Raylib.DrawText("Exit", 280, 450, 80, Color.DARKGREEN);
         }
 
+        static void ShootBullet()
+        {
+
+            Raylib.DrawCircle(playerX, 500, 10, Color.BLACK);
+
+        }
+
     }
 }
