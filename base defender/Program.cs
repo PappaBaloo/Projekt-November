@@ -271,7 +271,19 @@ namespace base_defender
         static void ShootBullet()
         {
 
-            Raylib.DrawCircle(playerX, 500, 10, Color.BLACK);
+            float playerX = 400;
+
+            Raylib.DrawCircle((int)playerX, 500, 10, Color.BLACK);
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+            {
+                playerX -= 0.8f;
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+            {
+                playerX += 0.8f;
+            }
 
         }
 
