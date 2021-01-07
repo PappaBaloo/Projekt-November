@@ -7,14 +7,13 @@ namespace base_defender
     {
         static void Main(string[] args)
         {
-            Raylib.InitWindow(800, 600, "Game");
+            Raylib.InitWindow(800, 600, "Get To The End");
 
             string scene = "MainMenu";
 
             float playerX = 400;
             float enemyX = 80;
             float enemyY = 20;
-            float bulletY = 550;
 
 
             while (!Raylib.WindowShouldClose())
@@ -89,13 +88,14 @@ namespace base_defender
                     Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 30, 30);
                     Rectangle borderrecLeft = new Rectangle(0, 0, 50, 600);
                     Rectangle borderrecRight = new Rectangle(750, 0, 50, 600);
-                    Rectangle bullet = new Rectangle((int)playerX, (int)bulletY, 10, 15);
+                    Rectangle borderrecBottom = new Rectangle(0, 600, 800, 50);
 
                     //BOOLS FÖR SPELET
                     bool borderLeftcheck = Raylib.CheckCollisionRecs(playerrec, borderrecLeft);
                     bool borderRightcheck = Raylib.CheckCollisionRecs(playerrec, borderrecRight);
                     bool enemyleftcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecLeft);
                     bool enemyrightcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecRight);
+                    bool borderbottomcheck = Raylib.CheckCollisionRecs(playerrec, borderrecBottom);
 
                     //BORDER FÖR SPELAREN OCH TELEPORTING
                     if (borderLeftcheck)
@@ -116,11 +116,6 @@ namespace base_defender
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
                     {
                         playerX += 0.8f;
-                    }
-
-                    if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
-                    {
-                        bulletY = 0.8f;
                     }
 
                     //FIENDE RÖRELSE
@@ -210,8 +205,7 @@ namespace base_defender
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
                     Raylib.DrawRectangleRec(borderrecLeft, Color.BLACK);
                     Raylib.DrawRectangleRec(borderrecRight, Color.BLACK);
-                    Raylib.DrawRectangleRec(bullet, Color.DARKGREEN);
-
+                    Raylib.DrawText("Level 1", 300, 50, 60, Color.BLACK);
 
                 }
                 else if (scene == "Settings")
@@ -251,10 +245,6 @@ namespace base_defender
 
                     Raylib.DrawText("Restart", 280, 380, 45, Color.VIOLET);
                 }
-
-
-
-
                 Raylib.EndDrawing();
             }
 
@@ -262,30 +252,10 @@ namespace base_defender
 
         static void MenuWords()
         {
-            Raylib.DrawText("Game", 280, 30, 80, Color.DARKGREEN);
-            Raylib.DrawText("Play", 280, 150, 80, Color.DARKGREEN);
-            Raylib.DrawText("Settings", 250, 310, 80, Color.DARKGREEN);
-            Raylib.DrawText("Exit", 280, 450, 80, Color.DARKGREEN);
+            Raylib.DrawText("Get To The End", 90, 30, 80, Color.DARKGREEN);
+            Raylib.DrawText("Play", 310, 155, 80, Color.DARKGREEN);
+            Raylib.DrawText("Settings", 235, 310, 80, Color.DARKGREEN);
+            Raylib.DrawText("Exit", 320, 460, 80, Color.DARKGREEN);
         }
-
-        static void ShootBullet()
-        {
-
-            float playerX = 400;
-
-            Raylib.DrawCircle((int)playerX, 500, 10, Color.BLACK);
-
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
-            {
-                playerX -= 0.8f;
-            }
-
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
-            {
-                playerX += 0.8f;
-            }
-
-        }
-
     }
 }
