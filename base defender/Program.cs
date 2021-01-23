@@ -14,7 +14,7 @@ namespace base_defender
             float playerX = 400;
             float playerY = 500;
             float enemyX = 80;
-            float enemyY = 20;
+            float enemyY = 60;
 
 
             while (!Raylib.WindowShouldClose())
@@ -98,6 +98,7 @@ namespace base_defender
                     bool enemyrightcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecRight);
                     bool borderbottomcheck = Raylib.CheckCollisionRecs(playerrec, borderrecBottom);
                     bool bordertopcheck = Raylib.CheckCollisionRecs(borderrecTop, playerrec);
+                    bool PlayerEnemyTouch = Raylib.CheckCollisionRecs(playerrec, enemyrec);
 
                     //BORDER FÖR SPELAREN OCH TELEPORTING
                     if (borderLeftcheck)
@@ -120,26 +121,31 @@ namespace base_defender
                     //KONTROLL FÖR SPELAREN
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
                     {
-                        playerX -= 1.1f;
+                        playerX -= 0.6f;
                     }
 
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
                     {
-                        playerX += 1.1f;
+                        playerX += 0.6f;
                     }
 
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                     {
-                        playerY -= 1.1f;
+                        playerY -= 0.6f;
                     }
 
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
                     {
-                        playerY += 1.1f;
+                        playerY += 0.6f;
+                    }
+
+                    //FIENDE KILL FUNCTION
+                    if (PlayerEnemyTouch)
+                    {
+                        scene = "Death";
                     }
 
                     //FIENDE RÖRELSE
-
                     if (enemyY == 20)
                     {
                         enemyX += 0.6f;
@@ -233,7 +239,7 @@ namespace base_defender
                     Raylib.DrawRectangleRec(borderrecRight, Color.BLACK);
                     Raylib.DrawRectangleRec(borderrecBottom, Color.BLACK);
                     Raylib.DrawRectangleRec(borderrecTop, Color.BLACK);
-                    Raylib.DrawRectangle(740, 490, 5, 50, Color.RED);
+                    Raylib.DrawRectangle(685, 530, 50, 5, Color.RED);
                     Raylib.DrawText("Exit", 680, 500, 30, Color.BLACK);
 
                 }
@@ -242,11 +248,22 @@ namespace base_defender
 
                     Raylib.ClearBackground(Color.LIME);
 
-                    Raylib.DrawText("nothing for now", 380, 280, 45, Color.MAGENTA);
+                    Rectangle mouserec = new Rectangle(Raylib.GetMouseX(), Raylib.GetMouseY(), 1, 1);
+                    Rectangle BacktoMenubuttonrec = new Rectangle(250, 280, 300, 100);
 
-                    if (Raylib.IsKeyPressed(KeyboardKey.KEY_D))
+                    Raylib.DrawText("nothing for now", 380, 280, 45, Color.MAGENTA);
+                    Raylib.DrawRectangleRec(BacktoMenubuttonrec, Color.RED);
+
+                    bool backbuttonrecOverlapping = Raylib.CheckCollisionRecs(mouserec, BacktoMenubuttonrec);
+                    bool mouseleftdown = Raylib.IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON);
+
+                    if (backbuttonrecOverlapping && mouseleftdown)
                     {
                         scene = "MainMenu";
+                    }
+                    if (backbuttonrecOverlapping)
+                    {
+
                     }
 
                 }
@@ -276,6 +293,7 @@ namespace base_defender
                     }
 
                     Raylib.DrawText("Restart", 280, 380, 45, Color.VIOLET);
+                    Raylib.DrawText("You Died", 260, 100, 72, Color.WHITE);
                 }
                 Raylib.EndDrawing();
             }
