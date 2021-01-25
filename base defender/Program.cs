@@ -16,6 +16,12 @@ namespace base_defender
             float enemyX = 80;
             float enemyY = 60;
 
+            //BACK TO REALITY
+            Raylib.InitAudioDevice();
+            Music mainmusic = Raylib.LoadMusicStream("resources/slider.wav");
+            Raylib.PlayMusicStream(mainmusic);
+            Raylib.UpdateMusicStream(mainmusic);
+
             //FPS LOCK
             Raylib.SetTargetFPS(400);
 
@@ -803,6 +809,10 @@ namespace base_defender
                 }
                 Raylib.EndDrawing();
             }
+
+            Raylib.UnloadMusicStream(mainmusic);
+
+            Raylib.CloseAudioDevice();
         }
         static void MenuWords()
         {
