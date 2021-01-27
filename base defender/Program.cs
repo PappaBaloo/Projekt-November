@@ -18,7 +18,7 @@ namespace base_defender
 
             //BACK TO REALITY
             Raylib.InitAudioDevice();
-            Music mainmusic = Raylib.LoadMusicStream("resources/slider.wav");
+            Music mainmusic = Raylib.LoadMusicStream("resources/slider.mp3");
             Raylib.PlayMusicStream(mainmusic);
             Raylib.UpdateMusicStream(mainmusic);
 
@@ -37,6 +37,11 @@ namespace base_defender
             int SpecialPoint2Y = SpecialPointYGenerator.Next(80, 520);
             int SpecialPoint3X = SpecialPointXGenerator.Next(80, 720);
             int SpecialPoint3Y = SpecialPointYGenerator.Next(80, 520);
+
+            //I TRIED TO MAKE A FUNCTIONING TIMER
+            // double timestarted = Raylib.GetTime();
+            // double timeinmenu = Raylib.GetTime();
+
 
 
             while (!Raylib.WindowShouldClose())
@@ -94,8 +99,12 @@ namespace base_defender
 
                     MenuWords();
 
-                }
 
+                }
+                else if (scene == "Username")
+                {
+                    Raylib.ClearBackground(Color.BLUE);
+                }
                 else if (scene == "MainGame")
                 {
                     //PLAYER AND ENEMY RECTANGLES
