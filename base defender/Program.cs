@@ -15,6 +15,8 @@ namespace base_defender
             float playerY = 500;
             float enemyX = 80;
             float enemyY = 60;
+            float enemyX2 = 720;
+            float enemyY2 = 60;
 
             //BACK TO REALITY
             Raylib.InitAudioDevice();
@@ -41,7 +43,6 @@ namespace base_defender
             //I TRIED TO MAKE A FUNCTIONING TIMER
             // double timestarted = Raylib.GetTime();
             // double timeinmenu = Raylib.GetTime();
-
 
 
             while (!Raylib.WindowShouldClose())
@@ -72,7 +73,7 @@ namespace base_defender
 
                     if (playbuttonareOverlapping && mouseleftdown)
                     {
-                        scene = "MainGame";
+                        scene = "Level 1";
                     }
                     if (playbuttonareOverlapping)
                     {
@@ -101,11 +102,33 @@ namespace base_defender
 
 
                 }
-                else if (scene == "Username")
-                {
-                    Raylib.ClearBackground(Color.BLUE);
-                }
-                else if (scene == "MainGame")
+
+                //  else if (scene == "Username")
+                //  {
+                //      Rectangle textinput = new Rectangle(200, 290, 400, 50);
+                //       Rectangle mouserec = new Rectangle(Raylib.GetMouseX(), Raylib.GetMouseY(), 1, 1);
+                //       bool mouseleftdown = Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON);
+                //      bool mouseovertextbox = Raylib.CheckCollisionRecs(textinput, mouserec);
+                //     Raylib.DrawRectangleRec(textinput, Color.LIGHTGRAY);
+                //
+                //
+                //       if (mouseovertextbox)
+                //        {
+                //             Raylib.DrawRectangleLinesEx(textinput, 5, Color.GREEN);
+                //        }
+                //
+                //
+                //
+                //
+                //         Raylib.ClearBackground(Color.BLUE);
+                //
+                //         Raylib.DrawText("Input Your Name Here", 235, 370, 30, Color.GREEN);
+                //
+                //
+                //    }
+
+                //Level 1
+                else if (scene == "Level 1")
                 {
                     //PLAYER AND ENEMY RECTANGLES
                     Rectangle playerrec = new Rectangle((int)playerX, (int)playerY, 40, 40);
@@ -143,19 +166,19 @@ namespace base_defender
                     //SPECIAL POINT COUNTER DISPLAY
                     if (SpecialPointCounter == 0)
                     {
-                        Raylib.DrawText("Extra Score: 0", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 0", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 1)
                     {
-                        Raylib.DrawText("Extra Score: 1", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 1", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 2)
                     {
-                        Raylib.DrawText("Extra Score: 2", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 2", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 3)
                     {
-                        Raylib.DrawText("Extra Score: 3", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 3", 70, 80, 26, Color.BLACK);
                     }
 
                     //BORDERS FOR PLAYER AND SIDE TELEPORTING
@@ -210,74 +233,74 @@ namespace base_defender
                     //ENEMY MOVEMENT
                     if (enemyY == 60)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 1f;
                     }
 
                     else if (enemyY == 100)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 1f;
                     }
 
                     else if (enemyY == 140)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 1f;
                     }
 
                     else if (enemyY == 180)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 1f;
                     }
 
                     else if (enemyY == 220)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 1f;
                     }
 
                     else if (enemyY == 260)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 1f;
                     }
 
                     else if (enemyY == 300)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 1f;
                     }
 
                     else if (enemyY == 340)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 1f;
                     }
 
                     else if (enemyY == 380)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 1f;
                     }
 
                     else if (enemyY == 420)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 1f;
                     }
 
                     else if (enemyY == 460)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 1f;
                     }
 
                     else if (enemyY == 500)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 1f;
                     }
 
                     if (enemyrightcheck)
                     {
-                        enemyX--;
+                        enemyX -= 5;
                         enemyY += 40;
                     }
 
                     if (enemyleftcheck)
                     {
                         enemyY += 40;
-                        enemyX++;
+                        enemyX += 5;
                     }
 
                     if (enemyY > 500)
@@ -290,6 +313,7 @@ namespace base_defender
                     Raylib.ClearBackground(Color.SKYBLUE);
 
                     Raylib.DrawText("Level 1", 300, 80, 60, Color.BLACK);
+                    Raylib.DrawText("GET TO THE TOP BEFORE\n      THE EVIL BOXES!!!", 130, 300, 40, Color.RAYWHITE);
                     Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
                     Raylib.DrawRectangleRec(borderrecLeft, Color.BLACK);
@@ -297,10 +321,11 @@ namespace base_defender
                     Raylib.DrawRectangleRec(borderrecBottom, Color.BLACK);
                     Raylib.DrawRectangleRec(SpecialPoint1, Color.GOLD);
                     Raylib.DrawRectangleRec(borderrecTop, Color.BLACK);
-                    Raylib.DrawRectangle(685, 530, 50, 5, Color.RED);
-                    Raylib.DrawText("Exit", 680, 500, 30, Color.BLACK);
+                    Raylib.DrawRectangle(735, 490, 5, 50, Color.RED);
+                    Raylib.DrawText("Exit For Enemies Only", 470, 505, 24, Color.BLACK);
 
                 }
+                //Level 2
                 else if (scene == "Level 2")
                 {
 
@@ -339,19 +364,19 @@ namespace base_defender
                     //SPECIAL POINT COUNTER DISPLAY
                     if (SpecialPointCounter == 0)
                     {
-                        Raylib.DrawText("Extra Score: 0", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 0", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 1)
                     {
-                        Raylib.DrawText("Extra Score: 1", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 1", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 2)
                     {
-                        Raylib.DrawText("Extra Score: 2", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 2", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 3)
                     {
-                        Raylib.DrawText("Extra Score: 3", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 3", 70, 80, 26, Color.BLACK);
                     }
 
                     //BORDERS FOR PLAYER AND SIDE TELEPORTING
@@ -406,74 +431,74 @@ namespace base_defender
                     //ENEMY MOVEMENT
                     if (enemyY == 60)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 2f;
                     }
 
                     else if (enemyY == 100)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 2f;
                     }
 
                     else if (enemyY == 140)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 2f;
                     }
 
                     else if (enemyY == 180)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 2f;
                     }
 
                     else if (enemyY == 220)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 2f;
                     }
 
                     else if (enemyY == 260)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 2f;
                     }
 
                     else if (enemyY == 300)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 2f;
                     }
 
                     else if (enemyY == 340)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 2f;
                     }
 
                     else if (enemyY == 380)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 2f;
                     }
 
                     else if (enemyY == 420)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 2f;
                     }
 
                     else if (enemyY == 460)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 2f;
                     }
 
                     else if (enemyY == 500)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 2f;
                     }
 
                     if (enemyrightcheck)
                     {
-                        enemyX--;
+                        enemyX -= 5;
                         enemyY += 40;
                     }
 
                     if (enemyleftcheck)
                     {
                         enemyY += 40;
-                        enemyX++;
+                        enemyX += 5;
                     }
 
                     if (enemyY > 500)
@@ -493,14 +518,17 @@ namespace base_defender
                     Raylib.DrawRectangleRec(borderrecBottom, Color.BLACK);
                     Raylib.DrawRectangleRec(SpecialPoint2, Color.GOLD);
                     Raylib.DrawRectangleRec(borderrecTop, Color.BLACK);
-                    Raylib.DrawRectangle(685, 530, 50, 5, Color.RED);
-                    Raylib.DrawText("Exit", 680, 500, 30, Color.BLACK);
+                    Raylib.DrawRectangle(735, 490, 5, 50, Color.RED);
+                    Raylib.DrawText("Exit For Enemies Only", 470, 505, 24, Color.BLACK);
                 }
+                //Level 3
                 else if (scene == "Level 3")
                 {
+
                     //PLAYER AND ENEMY RECTANGLES
                     Rectangle playerrec = new Rectangle((int)playerX, (int)playerY, 40, 40);
                     Rectangle enemyrec = new Rectangle((int)enemyX, (int)enemyY, 30, 30);
+                    Rectangle enemyrec2 = new Rectangle((int)enemyX2, (int)enemyY2, 30, 30);
 
                     //SPECIAL POINT RECTANGLES
                     Rectangle SpecialPoint3 = new Rectangle((int)SpecialPoint3X, (int)SpecialPoint3Y, 20, 20);
@@ -516,9 +544,12 @@ namespace base_defender
                     bool borderRightcheck = Raylib.CheckCollisionRecs(playerrec, borderrecRight);
                     bool enemyleftcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecLeft);
                     bool enemyrightcheck = Raylib.CheckCollisionRecs(enemyrec, borderrecRight);
+                    bool enemyleftcheck2 = Raylib.CheckCollisionRecs(enemyrec2, borderrecLeft);
+                    bool enemyrightcheck2 = Raylib.CheckCollisionRecs(enemyrec2, borderrecRight);
                     bool borderbottomcheck = Raylib.CheckCollisionRecs(playerrec, borderrecBottom);
                     bool bordertopcheck = Raylib.CheckCollisionRecs(borderrecTop, playerrec);
                     bool PlayerEnemyTouch = Raylib.CheckCollisionRecs(playerrec, enemyrec);
+                    bool PlayerEnemyTouch2 = Raylib.CheckCollisionRecs(playerrec, enemyrec2);
                     bool PlayerSpecialPoint3 = Raylib.CheckCollisionRecs(playerrec, SpecialPoint3);
 
                     //SPECIAL POINT PICKUP SERVICE
@@ -533,19 +564,19 @@ namespace base_defender
                     //SPECIAL POINT COUNTER DISPLAY
                     if (SpecialPointCounter == 0)
                     {
-                        Raylib.DrawText("Extra Score: 0", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 0", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 1)
                     {
-                        Raylib.DrawText("Extra Score: 1", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 1", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 2)
                     {
-                        Raylib.DrawText("Extra Score: 2", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 2", 70, 80, 26, Color.BLACK);
                     }
                     else if (SpecialPointCounter == 3)
                     {
-                        Raylib.DrawText("Extra Score: 3", 70, 80, 26, Color.BLACK);
+                        Raylib.DrawText("Score: 3", 70, 80, 26, Color.BLACK);
                     }
 
                     //BORDERS FOR PLAYER AND SIDE TELEPORTING
@@ -568,6 +599,8 @@ namespace base_defender
                         playerY = 500;
                         enemyX = 80;
                         enemyY = 60;
+                        enemyX2 = 720;
+                        enemyY2 = 60;
                     }
 
                     //CONTROLS FOR THE PLAYER
@@ -596,81 +629,163 @@ namespace base_defender
                     {
                         scene = "Death";
                     }
+                    else if (PlayerEnemyTouch2)
+                    {
+                        scene = "Death";
+                    }
 
                     //ENEMY MOVEMENT
                     if (enemyY == 60)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 3f;
                     }
 
                     else if (enemyY == 100)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 3f;
                     }
 
                     else if (enemyY == 140)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 3f;
                     }
 
                     else if (enemyY == 180)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 3f;
                     }
 
                     else if (enemyY == 220)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 3f;
                     }
 
                     else if (enemyY == 260)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 3f;
                     }
 
                     else if (enemyY == 300)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 3f;
                     }
 
                     else if (enemyY == 340)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 3f;
                     }
 
                     else if (enemyY == 380)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 3f;
                     }
 
                     else if (enemyY == 420)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 3f;
                     }
 
                     else if (enemyY == 460)
                     {
-                        enemyX -= 0.6f;
+                        enemyX -= 3f;
                     }
 
                     else if (enemyY == 500)
                     {
-                        enemyX += 0.6f;
+                        enemyX += 3f;
                     }
 
                     if (enemyrightcheck)
                     {
-                        enemyX--;
+                        enemyX -= 5;
                         enemyY += 40;
                     }
 
                     if (enemyleftcheck)
                     {
                         enemyY += 40;
-                        enemyX++;
+                        enemyX += 5;
                     }
 
                     if (enemyY > 500)
+                    {
+                        scene = "Death";
+                    }
+
+                    //ENEMY2 MOVEMENT
+                    if (enemyY2 == 60)
+                    {
+                        enemyX2 += 3f;
+                    }
+
+                    else if (enemyY2 == 100)
+                    {
+                        enemyX2 -= 3f;
+                    }
+
+                    else if (enemyY2 == 140)
+                    {
+                        enemyX2 += 3f;
+                    }
+
+                    else if (enemyY2 == 180)
+                    {
+                        enemyX2 -= 3f;
+                    }
+
+                    else if (enemyY2 == 220)
+                    {
+                        enemyX2 += 3f;
+                    }
+
+                    else if (enemyY2 == 260)
+                    {
+                        enemyX2 -= 3f;
+                    }
+
+                    else if (enemyY2 == 300)
+                    {
+                        enemyX2 += 3f;
+                    }
+
+                    else if (enemyY2 == 340)
+                    {
+                        enemyX2 -= 3f;
+                    }
+
+                    else if (enemyY2 == 380)
+                    {
+                        enemyX2 += 3f;
+                    }
+
+                    else if (enemyY2 == 420)
+                    {
+                        enemyX2 -= 3f;
+                    }
+
+                    else if (enemyY2 == 460)
+                    {
+                        enemyX2 += 3f;
+                    }
+
+                    else if (enemyY2 == 500)
+                    {
+                        enemyX2 -= 3f;
+                    }
+
+                    if (enemyrightcheck2)
+                    {
+                        enemyX2 -= 5;
+                        enemyY2 += 40;
+                    }
+
+                    if (enemyleftcheck2)
+                    {
+                        enemyY2 += 40;
+                        enemyX2 += 5;
+                    }
+
+                    if (enemyY2 > 500)
                     {
                         scene = "Death";
                     }
@@ -682,13 +797,17 @@ namespace base_defender
                     Raylib.DrawText("Level 3", 300, 80, 60, Color.BLACK);
                     Raylib.DrawRectangleRec(playerrec, Color.DARKGREEN);
                     Raylib.DrawRectangleRec(enemyrec, Color.RED);
+                    Raylib.DrawRectangleRec(enemyrec2, Color.RED);
                     Raylib.DrawRectangleRec(borderrecLeft, Color.BLACK);
                     Raylib.DrawRectangleRec(borderrecRight, Color.BLACK);
                     Raylib.DrawRectangleRec(borderrecBottom, Color.BLACK);
                     Raylib.DrawRectangleRec(SpecialPoint3, Color.GOLD);
                     Raylib.DrawRectangleRec(borderrecTop, Color.BLACK);
-                    Raylib.DrawRectangle(685, 530, 50, 5, Color.RED);
-                    Raylib.DrawText("Exit", 680, 500, 30, Color.BLACK);
+                    Raylib.DrawRectangle(735, 490, 5, 50, Color.RED);
+                    Raylib.DrawText("Exit For Enemies Only", 470, 505, 24, Color.BLACK);
+                    Raylib.DrawRectangle(65, 490, 5, 50, Color.RED);
+                    Raylib.DrawText("Exit For Enemies Only", 80, 505, 24, Color.BLACK);
+
                 }
                 else if (scene == "You Win!")
                 {
@@ -721,6 +840,8 @@ namespace base_defender
 
                         enemyX = 80;
                         enemyY = 60;
+                        enemyX2 = 720;
+                        enemyY2 = 60;
                         playerX = 400;
                         playerY = 500;
                         SpecialPointCounter -= SpecialPointCounter;
@@ -768,6 +889,8 @@ namespace base_defender
 
                         enemyX = 80;
                         enemyY = 60;
+                        enemyX2 = 720;
+                        enemyY2 = 60;
                         playerX = 400;
                         playerY = 500;
 
@@ -795,6 +918,8 @@ namespace base_defender
 
                         enemyX = 80;
                         enemyY = 60;
+                        enemyX2 = 720;
+                        enemyY2 = 60;
                         playerX = 400;
                         playerY = 500;
                         SpecialPointCounter -= SpecialPointCounter;
