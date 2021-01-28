@@ -18,11 +18,11 @@ namespace base_defender
             float enemyX2 = 720;
             float enemyY2 = 60;
 
-            //BACK TO REALITY
-            Raylib.InitAudioDevice();
-            Music mainmusic = Raylib.LoadMusicStream("resources/slider.mp3");
-            Raylib.PlayMusicStream(mainmusic);
-            Raylib.UpdateMusicStream(mainmusic);
+            //MUSIC
+            //  Raylib.InitAudioDevice();
+            // Music mainmusic = Raylib.LoadMusicStream("resources/slider.mp3");
+            // Raylib.PlayMusicStream(mainmusic);
+
 
             //FPS LOCK
             Raylib.SetTargetFPS(400);
@@ -52,6 +52,8 @@ namespace base_defender
                 Raylib.BeginDrawing();
 
                 Raylib.ClearBackground(Color.GRAY);
+
+                //   Raylib.UpdateMusicStream(mainmusic);
 
                 if (scene == "MainMenu")
                 {
@@ -944,7 +946,7 @@ namespace base_defender
                 Raylib.EndDrawing();
             }
 
-            Raylib.UnloadMusicStream(mainmusic);
+            //     Raylib.UnloadMusicStream(mainmusic);
 
             Raylib.CloseAudioDevice();
         }
